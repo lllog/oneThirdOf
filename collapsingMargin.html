@@ -1,7 +1,54 @@
-<div style="border:1px solid red;widht:100px;">
-  <div style="margin:50px 0;background-color:green;height:50px;widht:50px;">
+<body style="padding:20px 200px 20px 20px;">
+<div>
+<h3>margin折叠规则</h3>
+<p>
+1. 两个或多个毗邻的普通流中的块元素垂直方向上的margin会折叠<br/>
+A. 两个或多个<br/>
+说明其数量必须是大于一个，又说明，折叠是元素与元素间相互的行为，不存在A和B折叠，B没有和A折叠的现象了。<br />
+B. 毗邻<br/>
+是指没有被非空内容、padding、border或clear分隔开，说明其位置关系。
+注意一点，在没有被分隔开的情况下，一个元素margin-top会和它普通流中的第一个子元素(非浮动元素等)的margin-top相邻；只有在一个元素的height是”auto”的情况下，它的margin-bottom才会和它普通流中的最后一个子元素(非浮动元素等)的margin-bottom相邻。<br/>
+C. 垂直方向<br/>
+是指具体的方位，只有垂直方向的margin才会折叠，也就是说，水平方向的margin不会发生折叠的现象。<br/>
+</p>
+</div>
+<div style="border:1px solid red;width:100px;">
+  <div style="margin:50px 0;background-color:green;height:50px;width:50px;">
     <div style="margin:20px 0;">
        <div style="margin:100px 0;">B</div>
     </div>
   </div>
 </div>
+<p style="margin-bottom:50px;">
+D. 折叠后margin的计算<br/>
+都是正值时，取较大的<br/>
+有正有负时，先去负值绝对值最大的一个，然后和正margin最大的一个相加<br/>
+都是负值，取绝对值最大的一个，从0的位置，负向偏移<br/>
+</p>
+<div style="display:flex;">
+  <div>
+    <div style="height:50px;margin-bottom:50px;width:50px;background-color:red;">A</div>
+    <div style="height:50px;margin-top:100px;width:50px;background-color:green;">B</div>
+  </div>
+  <div style="margin-left:50px;">
+    <div style="height:50px;margin-bottom:-50px;width:50px;background-color:red;">A</div>
+    <div style="height:50px;margin-top:100px;width:50px;background-color:green;">B</div>
+  </div>
+  <div style="margin-left:50px;">
+    <div style="height:50px;margin-bottom:-75px;width:50px;background-color:red;">A</div>
+    <div style="height:50px;margin-top:-50px;margin-left:50px;width:50px;background-color:green;">B</div>
+  </div>
+  <div style="margin-left:50px;">
+    <div style="margin:50px 0; background-color:green;width:50px;">
+      <div style="margin:-60px 0;">
+        <div style="margin:150px 0;">A</div>
+      </div>
+    </div>
+    <div style="margin:-100px 0;background-color:green;width:50px;">
+      <div style="margin:-120px 0;">
+        <div style="margin:200px 0;">B</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
