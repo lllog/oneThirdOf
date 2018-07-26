@@ -1,4 +1,4 @@
-<body style="padding:20px 200px 20px 20px;">
+<body style="position:absolute;padding:20px 200px 20px 20px;">
 <div>
 <h3>margin折叠规则</h3>
 <p>
@@ -24,6 +24,8 @@ D. 折叠后margin的计算<br/>
 都是正值时，取较大的<br/>
 有正有负时，先去负值绝对值最大的一个，然后和正margin最大的一个相加<br/>
 都是负值，取绝对值最大的一个，从0的位置，负向偏移<br/>
+相邻的margin要一起参与计算，不得分步计算<br/>
+以上举的例子都是兄弟节点在垂直方向的相邻，要注意，相邻的元素不一定非要是兄弟节点，父子节点也可以，即使不是兄弟父子节点也可以相邻。<br/>
 </p>
 <div style="display:flex;">
   <div>
@@ -50,5 +52,21 @@ D. 折叠后margin的计算<br/>
       </div>
     </div>
   </div>
+</div>
+<p>2. 浮动元素/inline-block的元素/绝对定位元素的margin不会和垂直方向上的其他元素的margin折叠</p>
+<div>
+  <div style="margin-bottom:50px;width:50px;height:50px;background-color:red;">A</div>
+  <div style="float:left;margin-top:50px;width:100px;height:100px;background-color:green;">
+    <div style="margin-top:50px;background-color:gold;">B</div>
+  </div>
+</div>
+<p style="clear:both;">3.创建了会计格式化内容的元素，不和它的子元素发生margin折叠</p>
+<div style="margin-top:50px;width:100px;height:100px;background-color:red;overflow:hidden;">
+  <div style="margin-top:50px;background-color:gold;">B
+  </div>
+</div>
+<p>4.元素自身的margin-bottom和margin-top相邻时也会折叠</p>
+<div style="border:1px solid red;width:100px;">
+<div style="margin-top:100px;margin-bottom:50px;"></div>
 </div>
 </body>
